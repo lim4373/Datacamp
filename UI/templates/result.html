@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHI Prediction Result</title>
+</head>
+<body>
+    <h1>AHI Prediction Result</h1>
+
+    {% if predicted_ahi is not none %}
+    <h2>Predicted AHI: {{ predicted_ahi }}</h2>
+    {% endif %}
+
+    <a href="/">Go back to home</a>
+</body>
+</html>

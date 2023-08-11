@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+ <div class="login">
+   <h1>AHI Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+      <input type="text" name="Time_under90(Min)" placeholder="Time_under90(Min)" required="required" /></br>
+      <input type="text" name="Snoring Size(1:mild,2:morderate,3:severe)" placeholder="Snoring Size(1:mild,2:morderate,3:severe)" required="required" /></br>
+      <input type="text" name="SpO2_AVG" placeholder="SpO2_AVG" required="required" /></br>
+      <input type="text" name="SpO2_MIN" placeholder="SpO2_MIN" required="required" /></br>
+      <input type="text" name="BMI" placeholder="BMI" required="required" />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
