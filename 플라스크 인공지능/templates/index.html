@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Iris Classifier</title>
+</head>
+<body>
+    <h1>Iris Flower Classifier</h1>
+    
+    <form method="POST" action="/predict" enctype="multipart/form-data">
+        <label for="file">Upload .dat File:</label>
+        <input type="file" name="file" id="file" accept=".dat" required>
+        <br><br>
+        <input type="submit" value="Predict">
+    </form>
+    
+    {% if predictions %}
+        <h2>Prediction Probabilities:</h2>
+        <ul>
+            {% for class, probability in predictions.items() %}
+                <li>{{ class }}: {{ probability }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
