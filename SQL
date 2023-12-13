@@ -1,0 +1,113 @@
+## NOTICE
+
+day01. 
+
+1. 데이터베이스 서버구조, 클라이언트, 클라이언트 구조 설정 파일을 이해하고 활용할 수 있다.
+2. 생성된 테이블의 구문을 활용할 수 있다.
+3. 테이블의 데이터 추출문 SELECT 구문을 활용해서 결과를 리턴받을 수 있다.
+
+================================================
+
+select 구문 → 함수(수치함수, 날짜 함수, 집계 함수) → 조인(무결성 규칙) → 서브쿼리→ 계정관리(CRUD)→ table → p1/sql → function → 프로시저 → 트리거
+
+- RDBMS: MySQL
+- https://dev.mysql.com/doc/refman/8.0/en/
+- https://www.mysql.com/support/supportedplatforms/database.html
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/08528780-3e3e-4737-9e69-75cf44d6f64f/Untitled.png)
+
+- 시스템 환경변수
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/80ee99f5-520e-4d25-a204-c9deb5a7a7f7/Untitled.png)
+
+INNODB의 3대 특징
+
+1. 동시성 제어 = 트랜잭션
+
+- 트랜잭션(커밋(=저장)과 롤백): 트랜잭션에 따라 단가가 정해질 정도.
+
+2. 복구율이 좋다
+
+3. 버퍼풀
+
+### Table 조회
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/4a65fd04-3b68-49f0-a2c9-241ef730b309/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/d3c2c93f-d2f0-4509-998a-50af40e54ed3/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/722d4ef1-3474-415f-b56f-f124ad11c0f6/Untitled.png)
+
+show tables;
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/d6a7ac6b-d50b-45bb-8f85-1508eaf8a944/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/cdd8d23a-781e-4b77-9571-0bbabca33782/Untitled.png)
+
+DB →tables →entity→주종관계 → null,0
+
+attribute 암기
+
+- 싱글, 복합 어트리뷰트를 가질 수 있다.(책으로 다시 확인해보기)
+- db안에 테이블 확인
+- 스키마 확인
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/9742042b-76c1-451c-bb83-a68b22401f80/Untitled.png)
+
+- entity 구조 확인
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/04d5b39a-f285-4d95-95da-fece7f2bd389/Untitled.png)
+
+- dept 구조 확인
+
+varchar2: 배로
+
+number
+
+datetime
+
+pri는 중복데이터 허용x, 열값 x
+
+# classicmodels 데이터
+
+- customers
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/ba9019e8-006f-4437-a923-6a03d17fb429/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/ab976f8c-6e51-4f5c-b29f-67c3e8d91d5e/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/49d50dd6-6081-4961-8162-39c8e065b0eb/Untitled.png)
+
+- 칼럼 조회
+
+SELECT 뒤에 필요한 칼럼 명을 입력하고 어떠한 테이블에서 데이터를 가져올지 FROM 뒤에 입력
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/977391a9-a62d-4855-8c35-a3d02a2f4fc8/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/acd50c76-78f9-4b57-98d0-2000f036c3e3/Untitled.png)
+
+- 상품개수
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/ab4a2f61-c954-4f0c-8c81-53f7e3166681/Untitled.png)
+
+```sql
+SELECT COUNT(요청 번호)
+FROM DB 명.customers
+
+```
+
+1. 집계 함수
+
+```sql
+SELECT 집계함수(COUNT, SUM,AVG등등)
+FROM DB 명. table 이름;
+```
+
+- employees table
+- 
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/cbc37518-8925-44c6-85ea-f9146e58b0e5/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/3d9d53e0-04aa-46c6-a1eb-9c56850480e0/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5d436bea-6d45-42bf-819f-b45b6081bf74/d45bc251-745e-4306-8996-e5aa7fb2ca68/Untitled.png)
